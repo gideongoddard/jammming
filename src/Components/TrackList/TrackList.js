@@ -8,7 +8,7 @@ class TrackList extends React.Component {
             <div className="TrackList">
                 {
                     this.props.tracks ?
-                    this.props.tracks.map(track => {
+                        this.props.tracks.map(track => {
                         return <Track track={track} key={track.id} />
                     })
                     : console.log(this._reactInternalFiber._debugOwner.type.name)
