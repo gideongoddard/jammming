@@ -37,20 +37,20 @@ class App extends React.Component {
         name: 'The Healing Day',
         artist: 'Bill Fay',
         album: 'Life Is People',
-        id: 1,
+        id: 5,
       },
       {
         name: 'Emmylou',
         artist: 'First Aid Kit',
         album: 'The Lion\'s Roar',
-        id: 2,
+        id: 6,
       },
       {
         name: 'Stole the Show (feat. Parson James)',
         artist: 'Kygo',
         album: 'Cloud Nine',
-        id: 3,
-      }]
+        id: 7,
+      }],
     };
     this.addTrack = this.addTrack.bind(this);
   }
@@ -61,6 +61,7 @@ class App extends React.Component {
       return;
     }
     tracks.push(track);
+    this.setState({playlistTracks: tracks});
   }
 
   render() {
@@ -70,7 +71,7 @@ class App extends React.Component {
         <div className="App">
           <SearchBar />
           <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults} />
+            <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
             <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} />
           </div>
         </div>
