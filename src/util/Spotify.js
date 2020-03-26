@@ -1,8 +1,8 @@
-let accessToken = ;
+let accessToken;
 
-let Spotify = {
+const Spotify = {
     getAccessToken() {
-        if (accessToken != '') {
+        if (accessToken) {
             return accessToken;
         }
     }
