@@ -1,3 +1,5 @@
+import SearchBar from "../Components/SearchBar/SearchBar";
+
 const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const redirectUri = 'http://localhost:3000';
 
@@ -25,6 +27,15 @@ const Spotify = {
             const accessUri = `https://accounts.spotify.com/authorize?client_id=${clientId}_ID&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
             window.location = accessUri;
         }
+    },
+
+    search(term) {
+        const accessToken = Spotify.getAccessToken();
+        return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        })
     }
 }
 
