@@ -1,6 +1,6 @@
 import SearchBar from "../Components/SearchBar/SearchBar";
 
-const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+const clientId = '8c6a907c549644e79e612e3c7f08c368';
 const redirectUri = 'http://localhost:3000';
 
 let accessToken;
@@ -24,7 +24,7 @@ const Spotify = {
             window.history.pushState('Access Token', null, '/');
             return accessToken;
         } else {
-            const accessUri = `https://accounts.spotify.com/authorize?client_id=${clientId}_ID&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
+            const accessUri = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
             window.location = accessUri;
         }
     },
@@ -35,6 +35,19 @@ const Spotify = {
             headers: {
                 Authorization: `Bearer ${accessToken}`
             }
+        }).then(response => {
+            response.json();
+        }).then(jsonResponse => {
+            if (!jsonResponse.tracks) {
+                return [];
+            }
+            return jsonResponse.tracks.items.map(track => ({
+                id: track.id,
+                name: track.name,
+                artist: track.artists[0].name,
+                album: track.album.name,
+                uri: track.uri
+            }));
         })
     }
 }
