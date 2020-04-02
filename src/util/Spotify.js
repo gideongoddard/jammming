@@ -36,7 +36,7 @@ const Spotify = {
                 Authorization: `Bearer ${accessToken}`
             }
         }).then(response => {
-            response.json();
+            return response.json();
         }).then(jsonResponse => {
             if (!jsonResponse.tracks) {
                 return [];
