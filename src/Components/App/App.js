@@ -52,6 +52,18 @@ class App extends React.Component {
   search(term) {
     Spotify.search(term).then(searchResults => {
       this.setState({searchResults: searchResults});
+    }).then(() => {
+      let playlistTracks = this.state.playlistTracks;
+      let searchResults = this.state.searchResults;
+      for (let i = 0; i < playlistTracks.length; i++) {
+        for (let j = 0; j < searchResults.length; j++) {
+          if (playlistTracks[i].id === searchResults[j].id) {
+            let trackIndex = searchResults.indexOf(searchResults[j]);
+            searchResults.splice(trackIndex, 1);
+            this.setState({searchResults: searchResults});
+          }
+        }
+      }
     })
   }
 

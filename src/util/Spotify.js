@@ -1,7 +1,8 @@
 import SearchBar from "../Components/SearchBar/SearchBar";
 
 const clientId = '8c6a907c549644e79e612e3c7f08c368';
-const redirectUri = 'http://gidgod-jammming.surge.sh';
+const redirectUri = 'http://localhost:3000';
+// const redirectUri = 'http://gidgod-jammming.surge.sh';
 
 let accessToken;
 
